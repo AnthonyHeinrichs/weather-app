@@ -2,13 +2,11 @@ import { useState, useEffect } from 'react'
 import axios from 'axios'
 import './App.css';
 
-const WeatherAPI_endpoint = 'https://api.openweathermap.org/data/2.5/weather?'
-const API_key = '82401161e4362bdbac9573f0b61d3f82'
-
 function App() {
-  const [lat, setLat] = useState('')
-  const [long, setLong] = useState('')
-  const [responseData, setResponseData] = useState('')
+  const [lat, setLat] = useState()
+  const [lon, setLong] = useState()
+  const [weatherData, setWeatherData] = useState()
+
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition((position) => {
@@ -16,20 +14,16 @@ function App() {
       setLong(position.coords.longitude)
     })
 
-    axios.get(`${WeatherAPI_endpoint}lat=${lat}&lon=${long}&appid=${API_key}`)
+    axios.get(`https://weather-proxy.freecodecamp.rocks/api/current?lat=${lat}&lon=${lon}`)
     .then((response) => {
-      setResponseData(response.data)
+      console.log('second')
+      setWeatherData(response.data)
     })
-
-    console.log(responseData)
-
-  }, [lat, long])
+  }, [lat, lon])
 
   return (
     <>
-      <h1>Hello world!</h1>
-      <h2>{responseData.name}</h2>
-      <p>{responseData.weather[0].main}</p>
+      <h1>{weatherData ? weatherData.name : ''}</h1>
     </>
   )
 }
