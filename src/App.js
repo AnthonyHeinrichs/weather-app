@@ -26,8 +26,10 @@ function App() {
 
   return (
     <>
-      <h1>{weatherData ? weatherData.name : ''}</h1>
+      <h1>{weatherData ? weatherData.name : ''}, {weatherData ? weatherData.sys.country : ''}</h1>
+      <h2>{weatherData ? weatherData.main.temp : ''} °C</h2>
       <h2>{weatherData ? weatherData.weather[0].main : ''}</h2>
+      <img src={weatherData ? weatherData.weather[0].icon : ''} alt='weather' />
     </>
   )
 }
