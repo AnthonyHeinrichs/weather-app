@@ -9,21 +9,25 @@ function App() {
 
 
   useEffect(() => {
-    navigator.geolocation.getCurrentPosition((position) => {
-      setLat(position.coords.latitude)
-      setLong(position.coords.longitude)
-    })
+    const fetchData = async () => {
+      navigator.geolocation.getCurrentPosition((position) => {
+        setLat(position.coords.latitude)
+        setLong(position.coords.longitude)
+      })
 
-    axios.get(`https://weather-proxy.freecodecamp.rocks/api/current?lat=${lat}&lon=${lon}`)
-    .then((response) => {
-      console.log('second')
-      setWeatherData(response.data)
-    })
-  }, [lat, lon])
+      await axios.get(`https://weather-proxy.freecodecamp.rocks/api/current?lat=${lat}&lon=${lon}`)
+      .then((response) => {
+        console.log(response.data)
+        setWeatherData(response.data)
+      })
+    }
+    fetchData()
+  }, [lat,lon])
 
   return (
     <>
       <h1>{weatherData ? weatherData.name : ''}</h1>
+      <h2>{weatherData ? weatherData.weather[0].main : ''}</h2>
     </>
   )
 }
