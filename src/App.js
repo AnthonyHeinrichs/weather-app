@@ -15,10 +15,11 @@ function App() {
         setLong(position.coords.longitude)
       })
 
-      await axios.get(`https://weather-proxy.freecodecamp.rocks/api/current?lat=${lat}&lon=${lon}`)
-      .then((response) => {
-        console.log(response.data)
-        setWeatherData(response.data)
+      await fetch(`https://weather-proxy.freecodecamp.rocks/api/current?lat=${lat}&lon=${lon}`)
+      .then(response => response.json())
+      .then(result => {
+        console.log(result)
+        setWeatherData(result.data)
       })
     }
     fetchData()
