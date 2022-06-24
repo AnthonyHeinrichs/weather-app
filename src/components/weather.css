@@ -1,6 +1,24 @@
 .main {
-  margin: 20px;
   color: white;
+  height: 800px;
+  margin-left: 20px;
+  margin-right: 20px
+}
+
+.location{
+  font-size: 36px;
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
+}
+
+.temp{
+  font-size: 24px;
+  display: flex;
+  justify-content: center;
+}
+
+.weather {
+  font-size: 24px;
+  display: flex;
+  justify-content: center;
 }
