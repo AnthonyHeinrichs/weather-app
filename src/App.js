@@ -5,33 +5,24 @@ import './App.css';
 function App() {
   const [lat, setLat] = useState()
   const [lon, setLong] = useState()
-  // const [weatherData, setWeatherData] = useState()
+  const [weatherData, setWeatherData] = useState()
 
-  const weatherData =  {
-    data: {
-      location: 'Berlin',
-      weather: 'Sunny',
-      temp: 20
+  useEffect(() => {
+    const fetchData = async () => {
+      navigator.geolocation.getCurrentPosition((position) => {
+        setLat(position.coords.latitude)
+        setLong(position.coords.longitude)
+      })
+
+      await fetch(`https://weather-proxy.freecodecamp.rocks/api/current?lat=${lat}&lon=${lon}`)
+      .then(response => response.json())
+      .then(result => {
+        console.log(result)
+        setWeatherData(result.data)
+      })
     }
-  }
-
-
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     navigator.geolocation.getCurrentPosition((position) => {
-  //       setLat(position.coords.latitude)
-  //       setLong(position.coords.longitude)
-  //     })
-
-  //     await fetch(`https://weather-proxy.freecodecamp.rocks/api/current?lat=${lat}&lon=${lon}`)
-  //     .then(response => response.json())
-  //     .then(result => {
-  //       console.log(result)
-  //       setWeatherData(result.data)
-  //     })
-  //   }
-  //   fetchData()
-  // }, [lat,lon])
+    fetchData()
+  }, [lat,lon])
 
   return (
     <div className='main'>
