@@ -5,13 +5,15 @@ import './App.css';
 function App() {
   const [lat, setLat] = useState()
   const [lon, setLong] = useState()
-  const [weatherData, setWeatherData] = useState()
+  // const [weatherData, setWeatherData] = useState()
 
-  setWeatherData( {
-    location: 'Berlin',
-    weather: 'Sunny',
-    temp: 20
-  })
+  const weatherData =  {
+    data: {
+      location: 'Berlin',
+      weather: 'Sunny',
+      temp: 20
+    }
+  }
 
 
   // useEffect(() => {
@@ -32,9 +34,9 @@ function App() {
   // }, [lat,lon])
 
   return (
-    <>
-     {weatherData ? <Weather weatherData={weatherData} /> : (<div></div>)  }
-    </>
+    <div className='main'>
+      {weatherData ? <Weather weatherData={weatherData} /> : (<div></div>)  }
+    </div>
   )
 }
 

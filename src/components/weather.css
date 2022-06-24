@@ -1,0 +1,6 @@
+.main {
+  margin: 20px;
+  color: white;
+  display: flex;
+  justify-content: space-around;
+}
