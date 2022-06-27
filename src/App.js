@@ -8,13 +8,14 @@ function App() {
   const [weatherData, setWeatherData] = useState()
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchData = async() => {
       navigator.geolocation.getCurrentPosition((position) => {
         setLat(position.coords.latitude)
         setLong(position.coords.longitude)
       })
 
       await fetch(`https://weather-proxy.freecodecamp.rocks/api/current?lat=${lat}&lon=${lon}`)
+      .then(console.log('called'))
       .then(response => response.json())
       .then(result => {
         console.log(result)
@@ -22,12 +23,12 @@ function App() {
       })
     }
     fetchData()
-  }, [lat,lon])
+  }, [lat, lon])
 
   return (
-    <div className='main'>
+    <>
       {weatherData ? <Weather weatherData={weatherData} /> : (<div></div>)  }
-    </div>
+    </>
   )
 }
 
