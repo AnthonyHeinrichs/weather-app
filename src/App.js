@@ -1,35 +1,36 @@
-import { useState, useEffect } from 'react'
-import Weather from './components/weather'
 import './App.css';
+import React, { useEffect, useState } from "react";
+import Weather from './components/weather';
+export default function App() {
 
-function App() {
-  const [lat, setLat] = useState()
-  const [lon, setLong] = useState()
-  const [weatherData, setWeatherData] = useState()
+  const [lat, setLat] = useState([]);
+  const [lon, setLon] = useState([]);
+  const [data, setData] = useState([]);
 
   useEffect(() => {
-    const fetchData = async() => {
-      navigator.geolocation.getCurrentPosition((position) => {
-        setLat(position.coords.latitude)
-        setLong(position.coords.longitude)
-      })
+    const fetchData = async () => {
+      navigator.geolocation.getCurrentPosition(function(position) {
+        setLat(position.coords.latitude);
+        setLon(position.coords.longitude);
+      });
 
       await fetch(`https://weather-proxy.freecodecamp.rocks/api/current?lat=${lat}&lon=${lon}`)
-      .then(console.log('called'))
-      .then(response => response.json())
+      .then(res => res.json())
       .then(result => {
-        console.log(result)
-        setWeatherData(result.data)
-      })
+        setData(result)
+        console.log(result);
+      });
     }
-    fetchData()
-  }, [lat, lon])
+    fetchData();
+  }, [lat,lon])
 
   return (
-    <>
-      {weatherData ? <Weather weatherData={weatherData} /> : (<div></div>)  }
-    </>
-  )
+    <div className="App">
+      {(typeof data.main != 'undefined') ? (
+        <Weather weatherData={data}/>
+      ): (
+        <div></div>
+      )}
+    </div>
+  );
 }
-
-export default App;

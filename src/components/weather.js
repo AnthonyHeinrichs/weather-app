@@ -1,11 +1,12 @@
 import './weather.css'
 
 const Weather = ({weatherData}) => {
-
+  console.log(weatherData)
   return (
     <div>
-      <h2>{weatherData.name}</h2>
-      <h1>{weatherData.main}</h1>
+      <p>{weatherData.name}</p>
+      <p>{weatherData.weather[0].main}</p>
+      <p>{weatherData.main.temp}</p>
     </div>
   )
 }
