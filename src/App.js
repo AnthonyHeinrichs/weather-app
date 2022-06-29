@@ -25,7 +25,7 @@ export default function App() {
   }, [lat,lon])
 
   return (
-    <div className="App">
+    <div className="app">
       {(typeof data.main != 'undefined') ? (
         <Weather weatherData={data}/>
       ): (

@@ -3,10 +3,11 @@ import './weather.css'
 const Weather = ({weatherData}) => {
   console.log(weatherData)
   return (
-    <div>
-      <p>{weatherData.name}</p>
-      <p>{weatherData.weather[0].main}</p>
-      <p>{weatherData.main.temp}</p>
+    <div className='main'>
+      <p className='location'>{weatherData.name}</p>
+      <p className='weather'>{weatherData.weather[0].main}</p>
+      <p className='temp'>{parseInt(weatherData.main.temp)} °C</p>
+      <img className='icon' src={weatherData.weather[0].icon} alt='weather-icon' />
     </div>
   )
 }

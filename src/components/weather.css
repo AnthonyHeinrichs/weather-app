@@ -1,23 +1,23 @@
 .main {
-  color: white;
-  height: 800px;
-  margin-left: 20px;
-  margin-right: 20px
+  margin-top: 20px
 }
 
 .location{
+  color: white;
   font-size: 36px;
   display: flex;
   justify-content: center;
 }
 
 .temp{
+  color: white;
   font-size: 24px;
   display: flex;
   justify-content: center;
 }
 
 .weather {
+  color: white;
   font-size: 24px;
   display: flex;
   justify-content: center;
