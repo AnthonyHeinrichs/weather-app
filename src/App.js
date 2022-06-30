@@ -29,7 +29,7 @@ export default function App() {
       {(typeof data.main != 'undefined') ? (
         <Weather weatherData={data}/>
       ): (
-        <div></div>
+        <h1 className='main-header'>Please provide your location...</h1>
       )}
     </div>
   );
