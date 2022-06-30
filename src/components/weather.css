@@ -31,3 +31,11 @@
   height: 100px;
   width: 100px
 }
+
+.btn {
+  background: none;
+  border: none;
+  font-size: 20px;
+  color: #069;
+  cursor: pointer;
+}
